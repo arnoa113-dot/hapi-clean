@@ -1,4 +1,7 @@
-// お問い合わせフォーム：送信先サービス接続までの簡易動作（送信内容は保存されません）
+// お問い合わせフォーム：FormSubmit（https://formsubmit.co）経由でメール送信
+// 送信先を変えるときは FORM_ENDPOINT のメールアドレス部分を書き換える
+var FORM_ENDPOINT = 'https://formsubmit.co/ajax/mjam830.32@gmail.com';
+
 document.getElementById('inq').addEventListener('submit', function(e){
   e.preventDefault();
   var form = e.target;
@@ -6,7 +9,40 @@ document.getElementById('inq').addEventListener('submit', function(e){
     alert('必須項目とプライバシーポリシーへの同意をご確認ください。');
     return;
   }
-  form.style.display = 'none';
-  document.getElementById('thanks').style.display = 'block';
-  document.getElementById('thanks').scrollIntoView({behavior:'smooth', block:'center'});
+  if(form._honey && form._honey.value){ return; } // スパム対策（ボットのみ入力する隠し欄）
+
+  var btn = form.querySelector('button[type=submit]');
+  var btnText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = '送信中…';
+
+  var payload = {
+    '_subject': '【HAPI CLEAN】お問い合わせ：' + form.facility.value,
+    '_template': 'table',
+    '_replyto': form.email.value,
+    '施設名': form.facility.value,
+    '担当者名': form.person.value,
+    '電話番号': form.tel.value,
+    'メールアドレス': form.email.value,
+    '施設の所在地': form.place.value,
+    '客室数・物件の広さ': form.rooms.value,
+    '希望する依頼タイプ': form.type.value,
+    '相談内容': form.message.value
+  };
+
+  fetch(FORM_ENDPOINT, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+    body: JSON.stringify(payload)
+  }).then(function(res){
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    form.style.display = 'none';
+    var thanks = document.getElementById('thanks');
+    thanks.style.display = 'block';
+    thanks.scrollIntoView({behavior:'smooth', block:'center'});
+  }).catch(function(){
+    alert('送信できませんでした。時間をおいて再度お試しいただくか、メール（mjam830.32@gmail.com）で直接ご連絡ください。');
+    btn.disabled = false;
+    btn.textContent = btnText;
+  });
 });
