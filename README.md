@@ -30,5 +30,5 @@ CHANGELOG.md    変更履歴
 ## 未対応・今後の課題
 
 - お問い合わせフォームの初回送信時に、FormSubmit から mjam830.32@gmail.com へ「確認（Activate）」メールが届きます。リンクを押すまで2通目以降は届きません。
-- SNS（Instagram / Threads / note）はアカウント開設後にリンクを追加。
+- SNS：Instagram（@cleanhapi_88）は掲載済み。Threads / note はアカウント開設後にリンクを追加。
 - 公開先（ドメイン・ホスティング）未定。
