@@ -2,6 +2,13 @@
 // 送信先を変えるときは FORM_ENDPOINT のメールアドレス部分を書き換える
 var FORM_ENDPOINT = 'https://formsubmit.co/ajax/mjam830.32@gmail.com';
 
+// consult.html のボタンから来た場合、依頼タイプを自動で選択（?type=training / ?type=home）
+(function(){
+  var m = location.search.match(/[?&]type=(\w+)/);
+  var map = {training:'清掃スタッフの教育', home:'家庭清掃'};
+  if(m && map[m[1]]){ document.querySelector('#inq select[name=type]').value = map[m[1]]; }
+})();
+
 document.getElementById('inq').addEventListener('submit', function(e){
   e.preventDefault();
   var form = e.target;

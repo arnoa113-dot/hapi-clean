@@ -28,7 +28,8 @@ nav.main a{color:var(--ink);text-decoration:none}
 .btn.ghost:hover{background:var(--teal-light)}
 .btn-accent{background:var(--accent);border-color:var(--accent);color:#fff}
 header .btn{margin-left:auto;padding:9px 20px;font-size:14px}
-@media(min-width:860px){nav.main{display:flex}header .btn{margin-left:8px}}
+@media(min-width:1060px){nav.main{display:flex}header .btn{margin-left:8px}}
+.logo,nav.main a,header .btn{white-space:nowrap}
 /* hero */
 .hero{background:linear-gradient(160deg,#eef6f4 0%,#ffffff 70%);padding:56px 0 64px}
 .hero h1{font-size:clamp(26px,6vw,42px);font-weight:900;line-height:1.5;color:var(--teal-dark);margin-bottom:16px}
@@ -52,6 +53,7 @@ table{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--ra
 th,td{border:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top}
 th{background:var(--teal);color:#fff;font-weight:700}
 td.price{font-weight:900;color:var(--teal-dark);white-space:nowrap}
+@media(max-width:600px){td.price{white-space:normal}th,td{padding:10px}}
 .note{font-size:13px;color:var(--gray);margin-top:10px}
 h3.block{font-size:18px;font-weight:700;color:var(--teal-dark);margin:30px 0 12px}
 /* steps */

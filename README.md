@@ -7,7 +7,8 @@
 ## ファイル構成
 
 ```
-index.html      ページ本体（文章・料金表・FAQ・フォームなど）
+index.html      トップページ（文章・料金表・FAQ・フォームなど）
+consult.html    スタッフ教育・家庭清掃のページ
 css/style.css   デザイン（色・余白・レイアウト）
 js/main.js      お問い合わせフォームの動作（FormSubmit 経由で mjam830.32@gmail.com へメール送信）
 CHANGELOG.md    変更履歴
@@ -22,10 +23,11 @@ CHANGELOG.md    変更履歴
 | 料金表・割増・キャンセル | `index.html` の `<!-- Price -->` |
 | 対応エリア | `index.html` の `<!-- Area -->` と会社概要・フッター・`<meta name="description">` |
 | よくある質問 | `index.html` の `<!-- FAQ -->` |
+| スタッフ教育・家庭清掃 | `consult.html`（トップの `<!-- Other -->` に紹介カード） |
 | 会社概要・SNS | `index.html` の `<!-- Company -->` |
 | ブランドカラー | `css/style.css` 冒頭の `:root`（`--teal` がメイン色、`--accent` がオレンジ） |
 
-料金や対応エリアは複数箇所（料金表・FAQ・会社概要・フッター）に書かれているため、変更時はまとめて直してください。
+体制（専任スタッフが必ず1名入る2名体制）・料金・対応エリアは複数箇所（料金表・FAQ・会社概要・フッター）に書かれているため、変更時はまとめて直してください。
 
 ## 未対応・今後の課題
 
