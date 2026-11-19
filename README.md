@@ -20,6 +20,7 @@ CHANGELOG.md    変更履歴
 |---|---|
 | キャッチコピー・紹介文 | `index.html` の `<!-- Hero -->` |
 | サービス内容・リネン方式 | `index.html` の `<!-- Service -->` |
+| 清掃実績（ビフォー・アフター） | `index.html` の `<!-- Works -->`、写真は `img/works/番号-before.jpg` / `番号-after.jpg` |
 | 料金表・割増・キャンセル | `index.html` の `<!-- Price -->` |
 | 対応エリア | `index.html` の `<!-- Area -->` と会社概要・フッター・`<meta name="description">` |
 | よくある質問 | `index.html` の `<!-- FAQ -->` |
