@@ -1,7 +1,7 @@
 // お問い合わせフォーム：Web3Forms（https://web3forms.com）経由でメール送信
 // 送信先は Web3Forms でアクセスキーを発行したときのメールアドレス。変えるときは新しいキーを発行して差し替える
 var FORM_ENDPOINT = 'https://api.web3forms.com/submit';
-var WEB3FORMS_KEY = 'YOUR_ACCESS_KEY';
+var WEB3FORMS_KEY = '7ebca7a7-9442-4f30-a6fa-96fde6ef090a';
 
 // consult.html のボタンから来た場合、依頼タイプを自動で選択（?type=training / ?type=home）
 (function(){
