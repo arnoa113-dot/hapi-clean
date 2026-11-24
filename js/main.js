@@ -1,6 +1,7 @@
-// お問い合わせフォーム：FormSubmit（https://formsubmit.co）経由でメール送信
-// 送信先を変えるときは FORM_ENDPOINT のメールアドレス部分を書き換える
-var FORM_ENDPOINT = 'https://formsubmit.co/ajax/mjam830.32@gmail.com';
+// お問い合わせフォーム：Web3Forms（https://web3forms.com）経由でメール送信
+// 送信先は Web3Forms でアクセスキーを発行したときのメールアドレス。変えるときは新しいキーを発行して差し替える
+var FORM_ENDPOINT = 'https://api.web3forms.com/submit';
+var WEB3FORMS_KEY = 'YOUR_ACCESS_KEY';
 
 // consult.html のボタンから来た場合、依頼タイプを自動で選択（?type=training / ?type=home）
 (function(){
@@ -24,17 +25,18 @@ document.getElementById('inq').addEventListener('submit', function(e){
   btn.disabled = true;
   btn.classList.add('sending');
   btn.textContent = '送信中…';
-  status.textContent = '送信しています。10秒ほどかかる場合がありますので、このままお待ちください。';
+  status.textContent = '送信しています。このままお待ちください。';
   status.className = 'form-status';
   // 時間がかかっているときは、待っている理由を伝える
   var slowTimer = setTimeout(function(){
     status.textContent = '回線が混み合っています。もう少しだけお待ちください（画面は閉じないでください）。';
-  }, 8000);
+  }, 5000);
 
   var payload = {
-    '_subject': '【HAPI CLEAN】お問い合わせ：' + form.facility.value,
-    '_template': 'table',
-    '_replyto': form.email.value,
+    'access_key': WEB3FORMS_KEY,
+    'subject': '【HAPI CLEAN】お問い合わせ：' + form.facility.value,
+    'from_name': 'HAPI CLEAN お問い合わせフォーム',
+    'replyto': form.email.value,
     '施設名': form.facility.value,
     '担当者名': form.person.value,
     '電話番号': form.tel.value,
@@ -45,8 +47,8 @@ document.getElementById('inq').addEventListener('submit', function(e){
     '相談内容': form.message.value
   };
 
-  // 応答がないまま待ち続けないよう、25秒で打ち切る
-  var TIMEOUT_MS = 25000;
+  // 応答がないまま待ち続けないよう、20秒で打ち切る
+  var TIMEOUT_MS = 20000;
   var controller = window.AbortController ? new AbortController() : null;
   var timeoutTimer = setTimeout(function(){ if(controller) controller.abort(); }, TIMEOUT_MS);
 
@@ -65,7 +67,7 @@ document.getElementById('inq').addEventListener('submit', function(e){
     if(!res.ok) throw new Error('HTTP ' + res.status);
     return res.json().catch(function(){ return {}; });
   }).then(function(data){
-    // FormSubmit は未有効化などのとき HTTP 200 のまま success:"false" を返すため中身も確認する
+    // 念のため応答の中身（success）も確認する
     if(data && String(data.success) === 'false') throw new Error(data.message || 'not sent');
     finish();
     status.textContent = '';
