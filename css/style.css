@@ -80,6 +80,11 @@ textarea{min-height:110px}
 .check{display:flex;gap:8px;align-items:flex-start;font-weight:400;font-size:14px;margin-top:18px}
 .check input{margin-top:5px}
 form .btn{margin-top:20px;width:100%;text-align:center;cursor:pointer;font-size:16px}
+.form-status{margin:12px 0 0;font-size:14px;color:var(--gray);text-align:center;min-height:1em}
+.form-status.error{color:#c0392b;font-weight:700}
+form .btn.sending{opacity:.85;cursor:wait}
+form .btn.sending::before{content:"";display:inline-block;width:14px;height:14px;margin-right:8px;vertical-align:-2px;border:2px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 #thanks{display:none;background:var(--teal-light);border-radius:var(--radius);padding:26px;text-align:center;font-weight:700;color:var(--teal-dark)}
 /* footer */
 footer{background:var(--teal-dark);color:#dff0ed;padding:44px 0 110px;font-size:14px}
